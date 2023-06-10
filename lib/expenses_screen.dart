@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:expenses_app/model/expense.dart';
+import 'package:expenses_app/expenses_list.dart';
 
 class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen({super.key});
@@ -10,16 +12,31 @@ class ExpensesScreen extends StatefulWidget {
 }
 
 class _ExpensesScreenState extends State<ExpensesScreen> {
+  final List<Expense> _registeredExpenses = [
+    Expense(
+        date: DateTime.now(),
+        title: "Expense 1",
+        amount: 19.99,
+        category: Category.leisure),
+    Expense(
+        date: DateTime.now(),
+        title: "Expense 2",
+        amount: 19.99,
+        category: Category.travel),
+  ];
+
   @override
   Widget build(context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          Text(
+          const Text(
             'Chart',
           ),
-          Text(
-            "list",
+          Expanded(
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+            ),
           )
         ],
       ),
